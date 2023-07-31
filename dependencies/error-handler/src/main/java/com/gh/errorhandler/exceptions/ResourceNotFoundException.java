@@ -1,4 +1,4 @@
-package com.gh.departmentservice.exceptions;
+package com.gh.errorhandler.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
 
