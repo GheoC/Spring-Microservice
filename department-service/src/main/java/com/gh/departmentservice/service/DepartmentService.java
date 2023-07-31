@@ -1,8 +1,8 @@
 package com.gh.departmentservice.service;
 
 import com.gh.departmentservice.entity.Department;
-import com.gh.departmentservice.exceptions.ResourceNotFoundException;
 import com.gh.departmentservice.repository.DepartmentRepository;
+import com.gh.errorhandler.exceptions.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
