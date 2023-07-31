@@ -1,26 +1,18 @@
 package com.gh.employeeservice.mapper;
 
+import com.gh.common.mapper.base.BaseMapper;
 import com.gh.employeeservice.dto.EmployeeDto;
 import com.gh.employeeservice.entity.Employee;
-import org.springframework.stereotype.Service;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-@Service
-public class EmployeeMapper {
+@Mapper(config = BaseMapper.class)
+public interface EmployeeMapper extends BaseMapper<Employee, EmployeeDto> {
 
-    public EmployeeDto toDto(Employee employee) {
-        return EmployeeDto.builder()
-                .id(employee.getId())
-                .firstName(employee.getFirstName())
-                .lastName(employee.getLastName())
-                .email(employee.getEmail())
-                .build();
-    }
+    @Override
+    EmployeeDto toDto(Employee source);
 
-    public Employee toEntity(EmployeeDto dto) {
-        Employee employee = new Employee();
-        employee.setFirstName(dto.getFirstName());
-        employee.setLastName(dto.getLastName());
-        employee.setEmail(dto.getEmail());
-        return employee;
-    }
+    @Override
+    @Mapping(target = "id", ignore = true)
+    Employee toEntity(EmployeeDto employeeDto);
 }

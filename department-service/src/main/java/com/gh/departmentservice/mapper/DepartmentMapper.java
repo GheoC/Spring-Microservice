@@ -1,27 +1,18 @@
 package com.gh.departmentservice.mapper;
 
+import com.gh.common.mapper.base.BaseMapper;
 import com.gh.departmentservice.dto.DepartmentDto;
 import com.gh.departmentservice.entity.Department;
-import org.springframework.stereotype.Service;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-@Service
-public class DepartmentMapper {
+@Mapper(config = BaseMapper.class)
+public interface DepartmentMapper extends BaseMapper<Department, DepartmentDto> {
 
-    public DepartmentDto toDto(Department department) {
-        return DepartmentDto.builder()
-                .id(department.getId())
-                .departmentName(department.getDepartmentName())
-                .departmentDescription(department.getDepartmentDescription())
-                .departmentCode(department.getDepartmentCode())
-                .build();
-    }
+    @Override
+    DepartmentDto toDto(Department source);
 
-    public Department toEntity(DepartmentDto dto) {
-        Department department = new Department();
-        department.setDepartmentName(dto.getDepartmentName());
-        department.setDepartmentDescription(dto.getDepartmentDescription());
-        department.setDepartmentCode(dto.getDepartmentCode());
-
-        return department;
-    }
+    @Override
+    @Mapping(target = "id", ignore = true)
+    Department toEntity(DepartmentDto departmentDto);
 }
