@@ -1,10 +1,12 @@
 package com.gh.employeeservice.service;
 
+import com.gh.employeeservice.dto.DepartmentDto;
 import com.gh.employeeservice.entity.Employee;
 import com.gh.employeeservice.repository.EmployeeRepository;
 import com.gh.errorhandler.exceptions.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.text.MessageFormat;
 
@@ -13,8 +15,10 @@ import java.text.MessageFormat;
 public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final RestTemplate restTemplate;
 
     public Employee saveEmployee(Employee employee) {
+        restTemplate.getForEntity("http://localhost:8080/api/departments/" + employee.getDepartmentId(), DepartmentDto.class);
         return employeeRepository.save(employee);
     }
 
