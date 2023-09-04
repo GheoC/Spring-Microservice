@@ -1,6 +1,7 @@
 package com.gh.employeeservice.config;
 
 import com.gh.errorhandler.exceptions.ResourceNotFoundException;
+import com.gh.errorhandler.exceptions.ServiceDownException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.web.client.ResponseErrorHandler;
@@ -19,7 +20,7 @@ public class RestTemplateResponseErrorHandler implements ResponseErrorHandler {
     @Override
     public void handleError(ClientHttpResponse response) throws IOException {
         if (response.getStatusCode().series() == HttpStatus.Series.SERVER_ERROR) {
-            throw new RuntimeException("Department Service is down");
+            throw new ServiceDownException("Department Service is down");
         }
         if (response.getStatusCode().series() == HttpStatus.Series.CLIENT_ERROR) {
             if (response.getStatusCode() == HttpStatus.NOT_FOUND) {

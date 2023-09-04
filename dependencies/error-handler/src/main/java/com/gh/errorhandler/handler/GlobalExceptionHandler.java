@@ -1,6 +1,7 @@
 package com.gh.errorhandler.handler;
 
 import com.gh.errorhandler.exceptions.ResourceNotFoundException;
+import com.gh.errorhandler.exceptions.ServiceDownException;
 import com.gh.errorhandler.payload.ErrorDetails;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 webRequest.getDescription(false),
                 "RESOURCE_NOT_FOUND");
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ServiceDownException.class)
+    public ResponseEntity<ErrorDetails> handleServiceDownException(Exception exception, WebRequest webRequest) {
+        ErrorDetails exceptionError = new ErrorDetails(
+                LocalDateTime.now(),
+                exception.getMessage(),
+                webRequest.getDescription(false),
+                "INTERNAL SERVER ERROR");
+        return new ResponseEntity<>(exceptionError, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(Exception.class)
