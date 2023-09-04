@@ -10,6 +10,7 @@
         <module name="error-handler" />
         <module name="common" />
         <module name="department-service" />
+        <module name="discovery-service" />
         <module name="employee-service" />
       </profile>
     </annotationProcessing>
@@ -18,6 +19,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="common" options="-parameters" />
       <module name="department-service" options="-parameters" />
+      <module name="discovery-service" options="-parameters" />
       <module name="employee-service" options="-parameters" />
       <module name="error-handler" options="-parameters" />
     </option>
