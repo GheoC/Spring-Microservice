@@ -11,6 +11,7 @@
         <module name="common" />
         <module name="department-service" />
         <module name="discovery-service" />
+        <module name="gateway-service" />
         <module name="employee-service" />
       </profile>
     </annotationProcessing>
@@ -22,6 +23,7 @@
       <module name="discovery-service" options="-parameters" />
       <module name="employee-service" options="-parameters" />
       <module name="error-handler" options="-parameters" />
+      <module name="gateway-service" options="-parameters" />
     </option>
   </component>
 </project>
