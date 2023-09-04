@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/department-service/pom.xml" />
         <option value="$PROJECT_DIR$/dependencies/common/pom.xml" />
         <option value="$PROJECT_DIR$/dependencies/error-handler/pom.xml" />
+        <option value="$PROJECT_DIR$/infrastructure/discovery-service/pom.xml" />
       </list>
     </option>
   </component>
